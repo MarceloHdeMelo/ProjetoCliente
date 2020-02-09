@@ -1,5 +1,0 @@
-C:\Users\marce\Desktop\Projetos\CadastroCliente\CadastroCliente\CadastroCliente.Entidades\bin\Debug\CadastroCliente.Entidades.dll
-C:\Users\marce\Desktop\Projetos\CadastroCliente\CadastroCliente\CadastroCliente.Entidades\bin\Debug\CadastroCliente.Entidades.pdb
-C:\Users\marce\Desktop\Projetos\CadastroCliente\CadastroCliente\CadastroCliente.Entidades\obj\Debug\CadastroCliente.Entidades.csproj.CoreCompileInputs.cache
-C:\Users\marce\Desktop\Projetos\CadastroCliente\CadastroCliente\CadastroCliente.Entidades\obj\Debug\CadastroCliente.Entidades.dll
-C:\Users\marce\Desktop\Projetos\CadastroCliente\CadastroCliente\CadastroCliente.Entidades\obj\Debug\CadastroCliente.Entidades.pdb
