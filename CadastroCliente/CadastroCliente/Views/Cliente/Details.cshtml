@@ -1,0 +1,76 @@
+﻿@model CadastroCliente.Models.ClienteViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+
+    @if (Model.Enderecos != null && Model.Enderecos.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Enderecos.FirstOrDefault().Logradouro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Enderecos.FirstOrDefault().Numero)
+                </th>
+            </tr>
+
+
+            @foreach (var endereco in Model.Enderecos)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => endereco.Logradouro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => endereco.Numero)
+                </td>
+            </tr>
+            }
+        </table>
+    }
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar para lista de clientes", "Index")
+</p>
