@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using CadastroCliente.DAL;
 using CadastroCliente.Entidades;
 using CadastroCliente.Mappers;
@@ -37,37 +38,8 @@ namespace CadastroCliente.Controllers
                 return HttpNotFound();
             }
 
-            ClienteViewModel model = new ClienteViewModel();
-            try
-            {
-                model.Id = cliente.Id;
-                model.Nome = cliente.Nome;
-                model.Email = cliente.Email;
-                model.DataNascimento = cliente.DataNascimento;
-                model.Sexo = cliente.Sexo;
+            var model = Mapper.Map<Cliente, ClienteViewModel>(cliente);
 
-                foreach (var endereco in cliente.Enderecos)
-                {
-                    model.Enderecos.Add(new EnderecoViewModel
-                    {
-                        Id = endereco.Id,
-                        CEP = endereco.CEP,
-                        Logradouro = endereco.Logradouro,
-                        Complemento = endereco.Complemento,
-                        Numero = endereco.Numero,
-                        Bairro = endereco.Bairro,
-                        Cidade = endereco.Cidade,
-                        Estado = endereco.Estado,
-                        ClienteId = endereco.ClienteId
-                    });
-                }
-                
-            }
-            catch (Exception erro)
-            {
-                ViewBag.Mensagem = erro.Message;
-            }
-           
             return View(model);
         }
 
@@ -82,40 +54,11 @@ namespace CadastroCliente.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nome,DataNascimento,Sexo,Email")] ClienteViewModel model)
+        public ActionResult Create(ClienteViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var cliente = new Cliente();
-                try
-                {
-                    cliente.Id = model.Id;
-                    cliente.Nome = model.Nome;
-                    cliente.Email = model.Email;
-                    cliente.DataNascimento = model.DataNascimento;
-                    cliente.Sexo = model.Sexo;
-
-                    foreach (var endereco in model.Enderecos)
-                    {
-                        cliente.Enderecos.Add(new Endereco
-                        {
-                            Id = endereco.Id,
-                            CEP = endereco.CEP,
-                            Logradouro = endereco.Logradouro,
-                            Complemento = endereco.Complemento,
-                            Numero = endereco.Numero,
-                            Bairro = endereco.Bairro,
-                            Cidade = endereco.Cidade,
-                            Estado = endereco.Estado,
-                            ClienteId = endereco.ClienteId
-                        });
-                    }
-
-                }
-                catch (Exception erro)
-                {
-                    ViewBag.Mensagem = erro.Message;
-                }
+                var cliente = Mapper.Map<ClienteViewModel, Cliente>(model);
 
                 db.Clientes.Add(cliente);
                 db.SaveChanges();
@@ -137,37 +80,7 @@ namespace CadastroCliente.Controllers
             {
                 return HttpNotFound();
             }
-
-            ClienteViewModel model = new ClienteViewModel();
-            try
-            {
-                model.Id = cliente.Id;
-                model.Nome = cliente.Nome;
-                model.Email = cliente.Email;
-                model.DataNascimento = cliente.DataNascimento;
-                model.Sexo = cliente.Sexo;
-
-                foreach (var endereco in cliente.Enderecos)
-                {
-                    model.Enderecos.Add(new EnderecoViewModel
-                    {
-                        Id = endereco.Id,
-                        CEP = endereco.CEP,
-                        Logradouro = endereco.Logradouro,
-                        Complemento = endereco.Complemento,
-                        Numero = endereco.Numero,
-                        Bairro = endereco.Bairro,
-                        Cidade = endereco.Cidade,
-                        Estado = endereco.Estado,
-                        ClienteId = endereco.ClienteId
-                    });
-                }
-
-            }
-            catch (Exception erro)
-            {
-                ViewBag.Mensagem = erro.Message;
-            }
+            var model = Mapper.Map<Cliente, ClienteViewModel>(cliente);
             return View(model);
         }
 
@@ -176,15 +89,16 @@ namespace CadastroCliente.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nome,DataNascimento,Sexo,Email")] ClienteViewModel cliente)
+        public ActionResult Edit(ClienteViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var cliente = Mapper.Map<ClienteViewModel, Cliente>(model);
                 db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cliente);
+            return View(model);
         }
 
         // GET: Cliente/Delete/5
@@ -199,36 +113,7 @@ namespace CadastroCliente.Controllers
             {
                 return HttpNotFound();
             }
-            ClienteViewModel model = new ClienteViewModel();
-            try
-            {
-                model.Id = cliente.Id;
-                model.Nome = cliente.Nome;
-                model.Email = cliente.Email;
-                model.DataNascimento = cliente.DataNascimento;
-                model.Sexo = cliente.Sexo;
-
-                foreach (var endereco in cliente.Enderecos)
-                {
-                    model.Enderecos.Add(new EnderecoViewModel
-                    {
-                        Id = endereco.Id,
-                        CEP = endereco.CEP,
-                        Logradouro = endereco.Logradouro,
-                        Complemento = endereco.Complemento,
-                        Numero = endereco.Numero,
-                        Bairro = endereco.Bairro,
-                        Cidade = endereco.Cidade,
-                        Estado = endereco.Estado,
-                        ClienteId = endereco.ClienteId
-                    });
-                }
-
-            }
-            catch (Exception erro)
-            {
-                ViewBag.Mensagem = erro.Message;
-            }
+            var model = Mapper.Map<Cliente, ClienteViewModel>(cliente);
 
             return View(model);
         }

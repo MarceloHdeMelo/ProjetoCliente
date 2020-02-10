@@ -9,7 +9,6 @@ namespace CadastroCliente.Mappers
         public ModelToEntityMapper()
         {
             CreateMap<ClienteViewModel, Cliente>();
-            CreateMap<EnderecoViewModel, Endereco>();
         }
     }
 }

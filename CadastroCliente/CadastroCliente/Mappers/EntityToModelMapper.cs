@@ -8,9 +8,7 @@ namespace CadastroCliente.Mappers
     {
         public EntityToModelMapper()
         {
-            CreateMap<Cliente, ClienteViewModel>()
-                .AfterMap((ps, pst) => Mapper.Map(ps.Enderecos, pst));
-            CreateMap<Endereco, EnderecoViewModel>();
+            CreateMap<Cliente, ClienteViewModel>();
         }
     }
 }
